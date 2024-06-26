@@ -1,23 +1,36 @@
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom"
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Home from "./pages/Home";
-import Tournament from "./services/tournament";
 import Profile from "./pages/Profile";
 import Leaderboards from "./pages/Leaderboards";
+import Tournaments from "./pages/Tournaments";
+import Sidebar from "./components/Sidebar";
+import styled from 'styled-components';
 
 function App() {
-
   return (
     <Router>
-      App
-
-      <Routes>
-        <Route path="/" element= {<Home/>}/>
-        <Route path="/leaderboard" element= {<Leaderboards/>}/>
-        <Route path="/tournaments" element= {<Tournament/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-      </Routes>
+      <AppContainer>
+        <Sidebar />
+        <MainContent>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/leaderboard" element={<Leaderboards />} />
+            <Route path="/tournaments" element={<Tournaments />} />
+          </Routes>
+        </MainContent>
+      </AppContainer>
     </Router>
-  )
+  );
 }
 
-export default App
+const AppContainer = styled.div`
+  display: flex;
+`;
+
+const MainContent = styled.div`
+  flex-grow: 1;
+  padding: 20px;
+`;
+
+export default App;
